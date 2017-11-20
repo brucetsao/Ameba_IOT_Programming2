@@ -16,7 +16,8 @@ String  print4digits(int number) ;
 
 void setup() {
     Serial.begin(9600);
-  initRTC() ;
+    Wire.begin();
+    initRTC() ;
 
 }
 
@@ -31,7 +32,7 @@ void loop() {
 
 void initRTC()
 {
-     Wire1.begin();
+     Wire.begin();
     RTC.begin();
   if (! RTC.isrunning()) {
     Serial.println("RTC is NOT running!");
