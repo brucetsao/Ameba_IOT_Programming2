@@ -19,10 +19,11 @@ void setup() {
 }
 
 void loop() {
-    mp3_next ();
-    delay (2000);
+ //   mp3_next ();
+ //   delay (2000);
+ //   Serial.println(millis() ) ;
   // put your main code here, to run repeatedly:
- /*
+
     for (int i = 0 ; i <10 ; i++)
             {
                Serial.print("play no is :(") ;
@@ -32,5 +33,5 @@ void loop() {
               delay(2000) ;
             }
 
-*/
+
 }
