@@ -40,7 +40,9 @@ void setup() {
 
 void loop() 
 {
- 
+
+      GetDHTData() ;
+       PrintSensorData2LCD() ;
      SayTemperature() ;
      SayHumidity() ;
 

@@ -49,7 +49,7 @@ void SendHumidity()
       h = dht.readHumidity();
             Serial.println(h) ;
       mySerial.print("#H") ;
-      mySerial.println(String((int)h) );
+      mySerial.print(String((int)h) );
      mySerial.print("*") ;        
 }
 
@@ -57,7 +57,7 @@ void SendTemperature()
 {
         Serial.print("Now send Temperature:") ;
         t = dht.readTemperature();
-        Serial.println(t) ;
+        Serial.print(t) ;
       mySerial.print("#T") ;
       mySerial.println(String((int)t) );
      mySerial.print("*") ;      

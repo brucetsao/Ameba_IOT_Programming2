@@ -1,4 +1,6 @@
- #include <math.h>
+#include <Wire.h>   // I2C must use
+#include <LiquidCrystal_I2C.h>    //lcm 1602/2004 use
+
 #include <SoftwareSerial.h>
 #include <DFPlayer_Mini_Mp3.h>
 
@@ -17,10 +19,15 @@ unsigned char btchar ;
 SoftwareSerial mySerial(8,9); // RX, TX
 const byte interruptPin = 3;
 boolean SayFlag = false ;
+// LCM1602 I2C LCD
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address
 
 void setup() {
   // put your setup code here, to run once:
       dht.begin();
+    lcd.begin(20,4);     //begin(column,row)            // initialize the lcd 
+    lcd.backlight();
+      
     mySerial.begin(9600) ;
     Serial.begin(9600) ;
     Serial.println("MP3 Test for DHT Sensor ") ;
@@ -33,25 +40,46 @@ void setup() {
 
 void loop() 
 {
+        GetDHTData() ;
+       PrintSensorData2LCD() ;
+        
      if (SayFlag)
        SayIt() ;
  
    //  SayTemperature() ;
     // SayHumidity() ;
 
-  //delay(10000) ;
+  delay(1000) ;
+}
+
+void GetDHTData()
+{
+  h = dht.readHumidity();
+  // Read temperature as Celsius (the default)
+   t = dht.readTemperature();
+  // Read temperature as Fahrenheit (isFahrenheit = true)
+  f = dht.readTemperature(true);
+}
+
+void PrintSensorData2LCD()
+{
+    lcd.clear() ;
+    lcd.setCursor ( 0, 0 );        // go to home  setCursor ( column_number, row_number )
+    lcd.print("Temperature:");  
+    lcd.print(t);  
+    lcd.setCursor ( 0, 1 );        // go to the next line setCursor ( column_number, row_number )
+   lcd.print ("Humidity:");
+    lcd.print(h);  
 }
 void SayHumidity()
 {
       Serial.println("Now Say Humidity") ;
-      h = dht.readHumidity();
       PlayVoice(11,35) ;
       SayNumber((int)h);
 }
 void SayTemperature()
 {
         Serial.println("Now send Temperature") ;
-        t = dht.readTemperature();
       PlayVoice(10,35) ;
       SayNumber((int)t);
 }

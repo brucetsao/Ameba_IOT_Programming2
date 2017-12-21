@@ -1,14 +1,3 @@
-
-/*
- *  Copyright:  DFRobot
- *  name:       DFPlayer_Mini_Mp3 sample code
- *  Author:     lisper <lisper.li@dfrobot.com>
- *  Date:       2014-05-30
- *  Description:    sample code for DFPlayer Mini, this code is test on Uno
- *          note: mp3 file must put into mp3 folder in your tf card
- */
- 
- #include <math.h>
 #include <SoftwareSerial.h>
 #include <DFPlayer_Mini_Mp3.h>
  
@@ -23,25 +12,9 @@ void setup () {
 }
  
 void loop () { 
-  /*
-    for(int i=0 ; i <10;i++)
-    {
-       mp3_play(i);
-    }
-    */
-    SayNumber((int)random(120,500));
+     SayNumber((int)random(120,500));
     delay(2000) ;
-  /*
-    PlayVoice(1,10) ;
-   // delay(4000) ;
-    PlayVoice(2,10) ;
-  //  delay(4000) ;
-    PlayVoice(3,10) ;
-   // delay(4000) ;
-  Serial.println("768") ;
-   // while(1) ;
-  delay(1000) ;
-  */
+  
 }
 
  void PlayVoice(int no, int waiting) 
